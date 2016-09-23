@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+    <title> {{ title }} </title>
+  </head>
+
+  <body>
+    <table border=1>
+      <tr>
+	<th>Occupations</th>
+	<th>Percentage</th>
+      </tr>      
+      {% for key, value in collection.iteritems() %}
+      <tr>
+	<td> {{ key }} </td>
+	<td> {{ value }} </td>
+      </tr>
+      {% endfor %}
+    </table>
+  </body>
+
+</html>

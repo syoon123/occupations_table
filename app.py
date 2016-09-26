@@ -1,5 +1,5 @@
-import csv
-from flask import Flask, render_template, random
+import csv, random
+from flask import Flask, render_template
 app = Flask(__name__)
 
 @app.route("/")

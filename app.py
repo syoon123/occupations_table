@@ -1,5 +1,5 @@
 import csv
-from flask import Flask, render_template
+from flask import Flask, render_template, random
 app = Flask(__name__)
 
 @app.route("/")
@@ -15,7 +15,17 @@ with open('occupations.csv') as csvfile:
 
 @app.route("/occupations")
 def table():
-    return render_template('table.html', title = 'Table of Occupations', collection = d)
+    return render_template('table.html', title = 'Table of Occupations', collection = d, randocc = randomOcc())
+
+li = []
+
+for x in d.keys():
+        for i in range( int(float(d[x]) * 10)):
+                li.append(x)
+        
+def randomOcc():
+        return random.choice(li)
+    
 
 if __name__ == '__main__':
     app.debug = True

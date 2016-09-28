@@ -1,4 +1,4 @@
-import csv, random
+from utils import occupation
 from flask import Flask, render_template
 app = Flask(__name__)
 
@@ -6,26 +6,10 @@ app = Flask(__name__)
 def welcome():
     return "This be my homepage xd"
 
-d = {}
-with open('occupations.csv') as csvfile:
-    reader = csv.reader(csvfile)
-    for row in reader:
-        if (row[0] != "Job Class" and row[0] != "Total"):
-            d[row[0]] = row[1]
 
 @app.route("/occupations")
 def table():
-    return render_template('table.html', title = 'Table of Occupations', collection = d, randocc = randomOcc())
-
-li = []
-
-for x in d.keys():
-        for i in range( int(float(d[x]) * 10)):
-                li.append(x)
-        
-def randomOcc():
-        return random.choice(li)
-    
+    return render_template('table.html', title = 'Table of Occupations', collection = occupation.getDict(), randocc = occupation.randomOcc())    
 
 if __name__ == '__main__':
     app.debug = True
